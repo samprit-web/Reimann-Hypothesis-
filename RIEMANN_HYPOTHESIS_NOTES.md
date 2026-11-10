@@ -45,3 +45,31 @@ Using the Riemann–Siegel `Z(t)` (real, `Z(t)=0 ⇔ ζ(1/2+it)=0`) with sign-ch
 
 ## 5. What remains for a complete proof
 A proof must show `Re(ρ)=1/2` for **every** nontrivial zero (not infinitely many, not a positive proportion, not up to finite height). Known results—zero-free regions, proportion-on-the-line theorems, and all finite computations—do not exclude a hypothetical zero off the line at sufficiently large height. No verified argument closing this gap exists.
+
+## 6. Next proved step: no zeros on Re(s)=1 (Hadamard–de la Vallée Poussin, 1896)
+This is a key rigorous advance beyond the Euler-product region, but it does **not** imply RH.
+
+**Theorem.** `ζ(1 + it) ≠ 0` for all real `t ≠ 0`.
+
+**Proof steps (Mertens/trigonometric form):**
+1. For `σ > 1`, `log ζ(s) = ∑_{p} ∑_{m≥1} \frac{p^{-ms}}{m}`, hence  
+   `Re log ζ(σ + it) = log|ζ(σ + it)| = ∑_{p,m} \frac{p^{-mσ}}{m} cos(m t \log p)`.
+2. Trigonometric inequality: for any real `θ`, `3 + 4 cos θ + cos 2θ = 2(1 + cos θ)^2 ≥ 0`.
+3. Set `θ = m t \log p`, multiply by `p^{-mσ}/m ≥ 0`, sum over `p,m`:  
+   `3 log|ζ(σ)| + 4 log|ζ(σ + it)| + log|ζ(σ + 2it)| ≥ 0`, so  
+   `|ζ(σ)^3 · ζ(σ + it)^4 · ζ(σ + 2it)| ≥ 1` for all `σ > 1`, `t ∈ ℝ`.
+4. Suppose for contradiction `ζ(1 + it_0) = 0` with `t_0 ≠ 0`. As `σ → 1^+`:
+   - `ζ(σ) = \frac{1}{σ-1} + O(1)` (simple pole) ⇒ `|ζ(σ)^3| = O((σ-1)^{-3})`.
+   - zero at `1+it_0` ⇒ `ζ(σ + it_0) = O(σ-1)` ⇒ `|ζ(σ + it_0)^4| = O((σ-1)^4)`.
+   - analyticity at `1 + 2it_0` (not a pole) ⇒ `|ζ(σ + 2it_0)| = O(1)`.
+5. Product is `O(σ-1) → 0` as `σ → 1^+`, contradicting step 3. Therefore no zero lies on `Re(s)=1`.
+
+**Consequence.** Combined with §1–2, all nontrivial zeros lie in `0 < Re(ρ) < 1`. Stronger zero-free regions exist (e.g. Vinogradov–Korobov: `σ ≥ 1 - c/((log|t|)^{2/3}(log log|t|)^{1/3})`), still far from `Re(ρ)=1/2`.
+
+## 7. Status toward a final complete proof
+A complete proof of RH would require showing **every** nontrivial zero satisfies `Re(ρ)=1/2`. No known argument closes this gap:
+- **Partial results:** infinitely many zeros on the line (Hardy), positive proportion on the line (Selberg/Levinson/Conrey), and zero-free regions exclude strips near `Re(s)=1` but not off-line zeros arbitrarily close to `1/2`.
+- **Numerical evidence:** zeros verified on the line to extremely large heights (finite; cannot imply “all”).
+- **Equivalences/criteria** (§3, Li’s criterion, etc.) are logically equivalent to RH but not proven.
+
+**Conclusion:** Steps 1–6 and the numerical check in §4 are rigorous/constructive progress, but a final complete proof of the Riemann Hypothesis does not follow from them and is not currently known.
