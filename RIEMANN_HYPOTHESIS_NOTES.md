@@ -73,3 +73,34 @@ A complete proof of RH would require showing **every** nontrivial zero satisfies
 - **Equivalences/criteria** (§3, Li’s criterion, etc.) are logically equivalent to RH but not proven.
 
 **Conclusion:** Steps 1–6 and the numerical check in §4 are rigorous/constructive progress, but a final complete proof of the Riemann Hypothesis does not follow from them and is not currently known.
+
+## 8. Theoretical attempt toward a proof (Li’s criterion) and the gap
+This section outlines a rigorous equivalence that reduces RH to an explicit positivity statement, then identifies why current theory does not close it. **This is not a complete proof.**
+
+### 8.1 Setup (proved)
+Let `ξ(s)=½ s(s-1)π^{-s/2}Γ(s/2)ζ(s)` be entire of order 1 with `ξ(s)=ξ(1-s)` and zeros exactly the nontrivial zeros `ρ` of `ζ` (symmetric about `Re(s)=1/2` and the real axis). By Hadamard factorization,
+`ξ(s)=ξ(0) ∏_{ρ} (1 - s/ρ) e^{s/ρ}` (with pairing giving convergence). Define the Stieltjes/Keiper–Li coefficients
+`λ_n = \frac{1}{(n-1)!}\frac{d^n}{ds^n}\!\left[s^{n-1}\log ξ(s)\right]_{s=1}`, `n≥1`.
+
+### 8.2 Zero-sum representation (proved)
+Differentiating `log ξ` yields the absolutely-convergent (in paired sense) identity
+`λ_n = ∑_{ρ} \left[1 - \left(1 - \frac{1}{ρ}\right)^n\right]`, summed over all nontrivial zeros `ρ`.
+- Conjugate/symmetry pairing makes `λ_n ∈ ℝ`.
+- Equivalent forms (via `ρ ↦ 1-ρ`) give `λ_n = ∑_{ρ} [1 - (ρ/(ρ-1))^n]` as well.
+
+### 8.3 Li’s criterion (proved equivalence, Li 1997; Bombieri–Lagarias 1999)
+**Theorem.** RH holds ⇔ `λ_n > 0` for every `n ≥ 1` (equivalently `λ_n ≥ 0` for all `n`).
+
+*Necessity (RH ⇒ positivity), idea:* if `Re(ρ)=1/2`, write `ρ=1/2+iγ`. Then `|1-1/ρ|=|(ρ-1)/ρ|=1`, so `1-1/ρ = e^{iθ_ρ}` with `θ_ρ≠0 (mod 2π)` for nontrivial zeros, and each term contributes `1 - cos(nθ_ρ) - i sin(nθ_ρ)`; symmetric pairing yields a nonnegative real sum, with strict positivity from nonzero terms.
+
+*Sufficiency (positivity ⇒ RH), idea:* if some `Re(ρ)>1/2`, then `|1-1/ρ|>1` or the geometry of terms forces `λ_n` to take negative/oscillatory values for large `n` (Bombieri–Lagarias give a precise growth/positivity argument for general sequences satisfying the same functional symmetry).
+
+Thus a complete theoretical proof of RH is equivalent to proving `λ_n > 0` for all `n`.
+
+### 8.4 Why this does not close RH (the gap)
+1. **Positivity is unproved:** No argument establishes `λ_n ≥ 0` for all `n` without assuming RH or an equivalent hypothesis. Known results give asymptotics/partial positivity but not uniform positivity.
+2. **Off-line zero obstruction:** A single zero `ρ_0` with `Re(ρ_0)≠1/2` would make `|1-1/ρ_0|` or `|ρ_0/(ρ_0-1)|` differ from 1, and its contribution dominates/perturbs `λ_n` for large `n`; excluding this for every zero is exactly RH.
+3. **Equivalent reformulations are not proofs:** Weil’s positivity criterion, Beurling–Nyman/Báez-Duarte criteria, and de Bruijn–Newman/Polya approaches similarly translate RH into an analytic/positivity/spectral statement whose truth is unknown. Each reduces RH to a concrete conjecture but supplies no verified mechanism forcing it.
+
+### 8.5 Conclusion of the attempt
+Li’s criterion provides a sharp theoretical target: prove `λ_n(ξ)>0` ∀n. All steps above are rigorous; the final positivity claim is equivalent to RH and remains unproved. Therefore this theoretical path, as with all known paths, reaches a precise but currently unbridged gap rather than a complete proof.
