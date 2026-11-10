@@ -104,3 +104,36 @@ Thus a complete theoretical proof of RH is equivalent to proving `λ_n > 0` for 
 
 ### 8.5 Conclusion of the attempt
 Li’s criterion provides a sharp theoretical target: prove `λ_n(ξ)>0` ∀n. All steps above are rigorous; the final positivity claim is equivalent to RH and remains unproved. Therefore this theoretical path, as with all known paths, reaches a precise but currently unbridged gap rather than a complete proof.
+
+## 9. Theoretical attempt: Beurling–Nyman / Báez-Duarte criterion (proved equivalence) and gap
+Another rigorous reduction of RH to a concrete approximation/positivity problem in a Hilbert space. **Not a complete proof.**
+
+### 9.1 Functions and Mellin transform (proved)
+Let `ρ(u)=u-⌊u⌋` be the fractional part. For `0<θ≤1` define on `(0,1]`
+`f_θ(x)=ρ(θ/x) - θ ρ(1/x)`, and set `f_θ(x)=0` for `x>1`. For `Re(s)>0`,
+`M[ρ(1/x)](s)=∫_0^1 ρ(1/x) x^{s-1}dx = 1/(s-1) - ζ(s)/s` (by `y=1/x`, `∫_1^∞ {y}y^{-1-s}dy = 1/(s-1)-ζ(s)/s`), and scaling gives
+`M[f_θ](s)=∫_0^1 f_θ(x) x^{s-1}dx = - (ζ(s)/s)(θ^s - θ)`, `0<Re(s)<1` (analytic continuation of the Mellin formula; pole at `s=1` cancels in the combination).
+
+For a finite linear combination `F(x)=∑_{k=1}^{N} a_k f_{θ_k}(x)` with `a_k∈ℂ`, `0<θ_k≤1`,
+`M[F](s)= - (ζ(s)/s) · A_F(s)`, where `A_F(s)=∑_{k=1}^{N} a_k (θ_k^s - θ_k)` is a Dirichlet polynomial/entire combination satisfying `A_F(1)=0`.
+
+### 9.2 Beurling–Nyman criterion (proved equivalence)
+Let `H=L^2(0,1)` and `B=span{ f_θ : 0<θ≤1 }` (finite linear combinations). Consider approximation of the constant `χ(x)=1` on `(0,1)` (equivalently of `-ρ(1/x)`-type generators in Beurling’s formulation).
+
+**Theorem (Nyman 1950, Beurling 1955).** RH ⇔ `χ ∈ \overline{B}^{\,H}` ⇔ `\overline{B}^{\,H}=H`.
+
+*Necessity/sufficiency idea (rigorous core):* `M` is an isometry-related map to `L^2` on vertical lines in `1/2<Re(s)<1`/Hardy-space context. If some nontrivial zero `ρ_0` has `Re(ρ_0)>1/2`, then for every `F∈B`, `M[F](ρ_0)= - (ζ(ρ_0)/ρ_0) A_F(ρ_0)=0` (the `ζ` factor vanishes), while `M[χ](ρ_0)=1/ρ_0≠0`; a continuous linear functional (evaluation/inner-product in the Mellin image on a suitable line) separates `χ` from `\overline{B}`, so density fails. Conversely, if RH holds (all nontrivial zeros on `Re(s)=1/2`), no such zero appears in `Re(s)>1/2` to annihilate all `M[F]`, and the classical Mellin/Hardy-space argument yields `χ ∈ \overline{B}^{\,H}`.
+
+### 9.3 Báez-Duarte criterion (proved strengthening)
+Báez-Duarte (2003) showed it suffices to use the natural sequence `θ_k=1/k`, `k≥1`. Let `e_k(x)=ρ(1/(k x)) - (1/k)ρ(1/x)` and `B_{ℕ}=span{e_k : k∈ℕ}`.
+
+**Theorem (Báez-Duarte).** RH ⇔ `χ ∈ \overline{B_{ℕ}}^{\,L^2(0,1)}`.
+
+Moreover, writing the best approximation error as `d_N^2 = inf_{a_1,..,a_N} \|χ - ∑_{k=1}^{N} a_k e_k\|_{L^2(0,1)}^2`, RH is equivalent to `d_N → 0` as `N→∞` (with quantitative links to zero-free regions known in some forms).
+
+### 9.4 Why this does not close RH (the gap)
+1. **Approximation unproved:** No sequence of finite combinations `∑ a_{N,k} e_k` with `\|χ - ∑ a_{N,k} e_k\|_2 → 0` has been constructed/proved to exist without assuming RH or an equivalent condition.
+2. **The zero obstruction is exactly RH:** A single zero with `Re(ρ_0)>1/2` creates an invariant annihilating functional for `B_{ℕ}` but not for `χ` (§9.2); excluding all such zeros is precisely RH.
+3. **Quantitative bounds insufficient:** Known estimates on `d_N` and related Dirichlet-polynomial approximations do not force `d_N → 0`. As with Li/Weil/other criteria, the reformulation is sharp but the decisive positivity/density/approximation statement remains unproved.
+
+**Conclusion:** The Beurling–Nyman/Báez-Duarte equivalence is a rigorous theoretical bridge: RH ⇔ an explicit `L^2(0,1)` density/approximation property. This bridge does not yield a final complete proof because the approximation property itself is equivalent to RH and unestablished.
